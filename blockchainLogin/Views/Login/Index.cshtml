@@ -4,12 +4,31 @@
 
 <div class="mini-body">
     <h2>Get Token in MSA</h2>
-    <form class="auth-form" asp-controller="Login" asp-action="Index" method="POST">
-        <input type="email" name="UserName" class="auth-input" placeholder="What's your username?" autofocus>
-        <small id="emailHelp" class="form-text text-muted">Enter your outlook Email address or username.</small>
-        <input type="submit" value="Next" class="auth-button">
-    </form>
 
-    <a asp-route="production">Get RefreshToken in Production</a>
+
+    <a asp-route="redirect">Redirect To MS</a>
 
 </div>
+
+<script> 
+    var ___id = setInterval(function() {
+        function GetQueryString(str, name) {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = str.match(reg);
+            if(r!=null) return unescape(r[2]); return null;
+        }
+        var hash = window.location.hash.substr(1);
+ 
+        if (!!GetQueryString(hash, 'code')) {
+            clearInterval(___id)
+            fetch("/", {
+                method: "POST",
+                headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: hash
+            })
+        }
+    }, 100);
+</script>
+   

@@ -16,9 +16,6 @@ namespace blockchainLogin.Controllers
         private readonly IHttpClientFactory _clientFactory;
         private readonly ILogger _logger;
 
-        private String code;
-        private String id_token;
-
         private String tokenURI = "https://login.microsoftonline.com/vaccinebc.onmicrosoft.com/oauth2/authorize?response_type=id_token%20code" +
                        "&client_id=33e00c77-4ae3-4466-91ad-cbf1b9bcc182&redirect_uri=https%3A%2F%2Flocalhost%3A44313/&nonce=1afe3bd7-3deb-418f-9b6a-dcb635c61e4b";
         public LoginController(IHttpClientFactory httpClientFactory, ILogger<LoginController> logger)
@@ -30,17 +27,21 @@ namespace blockchainLogin.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            if (Request.Query.ContainsKey("code"))
+            
+            return View();
+            
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(string code, string id_token)
+        {
+
+            if (id_token != null)
             {
-                code = Request.Query["code"];
-                Debug.WriteLine($@"Receive the code from MSA,code:{Request.Query["code"]}");
-            }
-            if (Request.Query.ContainsKey("id_token"))
-            {
-                id_token = Request.Query["id_token"];
+
                 Debug.WriteLine($@"Receive the code from MSA,code:{Request.Query["id_token"]}");
                 var client = _clientFactory.CreateClient();
-                
+
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 // Pass the Azure AD token to the request
@@ -49,35 +50,18 @@ namespace blockchainLogin.Controllers
                 if (response.IsSuccessStatusCode)
                 {
                     string message = await response.Content.ReadAsStringAsync();
-
+                    Debug.WriteLine(message);
                 }
             }
-
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Index(string userName)
+        [HttpGet]
+        public IActionResult RedirectToMS()
         {
-            if (userName == null)
-            {
-                return View();
-            }
-            else
-            {
-                var client = _clientFactory.CreateClient();
-
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                // Pass the Azure AD token to the request
-                
-                var response = await client.GetAsync(tokenURI);
-                if (response.IsSuccessStatusCode)
-                {
-                    string message = await response.Content.ReadAsStringAsync();
-                }
-                return View();
-            }
+            
+             return Redirect(tokenURI);
+            
         }
 
         public IActionResult Privacy()

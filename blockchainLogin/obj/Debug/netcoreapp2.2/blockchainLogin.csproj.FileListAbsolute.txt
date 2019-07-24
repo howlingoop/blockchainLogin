@@ -5,7 +5,6 @@ C:\Users\weiliao\blockchainLogin\blockchainLogin\bin\Debug\netcoreapp2.2\blockch
 C:\Users\weiliao\blockchainLogin\blockchainLogin\bin\Debug\netcoreapp2.2\blockchainLogin.pdb
 C:\Users\weiliao\blockchainLogin\blockchainLogin\bin\Debug\netcoreapp2.2\blockchainLogin.Views.dll
 C:\Users\weiliao\blockchainLogin\blockchainLogin\bin\Debug\netcoreapp2.2\blockchainLogin.Views.pdb
-C:\Users\weiliao\blockchainLogin\blockchainLogin\obj\Debug\netcoreapp2.2\blockchainLogin.csprojAssemblyReference.cache
 C:\Users\weiliao\blockchainLogin\blockchainLogin\obj\Debug\netcoreapp2.2\blockchainLogin.csproj.CoreCompileInputs.cache
 C:\Users\weiliao\blockchainLogin\blockchainLogin\obj\Debug\netcoreapp2.2\blockchainLogin.RazorAssemblyInfo.cache
 C:\Users\weiliao\blockchainLogin\blockchainLogin\obj\Debug\netcoreapp2.2\blockchainLogin.RazorAssemblyInfo.cs

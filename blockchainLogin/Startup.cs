@@ -58,7 +58,12 @@ namespace blockchainLogin
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Login}/{action=Index}/{id?}");
+                    template: "{controller=Login}/{action=Index}/");
+                routes.MapRoute(
+                    name: "redirect",
+                    template: "/redirect",
+                    defaults: new { controller = "Login", action = "RedirectToMS" });
+
             });
         }
     }
