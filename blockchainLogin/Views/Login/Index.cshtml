@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="mini-body">
+    <h2>Get Token in MSA</h2>
+    <form class="auth-form" asp-controller="Login" asp-action="Index" method="POST">
+        <input type="email" name="UserName" class="auth-input" placeholder="What's your username?" autofocus>
+        <small id="emailHelp" class="form-text text-muted">Enter your outlook Email address or username.</small>
+        <input type="submit" value="Next" class="auth-button">
+    </form>
+
+    <a asp-route="production">Get RefreshToken in Production</a>
+
+</div>
